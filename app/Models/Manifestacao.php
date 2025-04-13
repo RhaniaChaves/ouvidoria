@@ -10,6 +10,7 @@ class Manifestacao extends Model
     use HasFactory;
 
     protected $table = "manifestacoes";
+    
     protected $fillable = [
         "nome_autor",
         "codigo_rastreio",
