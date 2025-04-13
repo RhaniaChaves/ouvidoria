@@ -13,7 +13,7 @@
                     <a class="nav-link" href="{{ route('manifestacao.buscar') }}">Ver Status</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
+                    <a class="nav-link" href="{{ route('sobre') }}">Sobre</a>
                 </li>
                 @auth
                     <li class="nav-item">

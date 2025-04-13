@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('sobre', function(){
+    return view('sobre');
+})->name('sobre');
+
 Route::controller(ManifestacoesController::class)->prefix("manifestacoes")->group(function(){
     Route::get('/form',"create")->name('manifestacao.form');
     Route::get('/buscar', function(){
@@ -25,6 +29,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::delete('/{id}', 'delete')->name('manifestacao.delete'); 
     });
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect()->route('admin.manifestacoes.listar');
     })->name('dashboard');
 });
