@@ -15,7 +15,10 @@ class ManifestacoesController extends Controller
     public function show($codigo_rastreio)
     {
         $manifestacao = Manifestacao::where('codigo_rastreio', $codigo_rastreio)->first();
-        echo json_encode($manifestacao);
+        
+        return response([
+            'status' => ucwords($manifestacao->status)
+        ], 201);
     }
 
     public function store(Request $request)
@@ -32,10 +35,10 @@ class ManifestacoesController extends Controller
                 "status"=> "aberta",
                 "tipo_usuario"=>$request->input("tipo_usuario"),
             ]);
-            return response([
-                "mensagem"=> "sucesso",
-                "codigo_rastreio"=> $manifestacao->codigo_rastreio,
-            ],201);
+
+            session()->flash('codigo', $manifestacao->codigo_rastreio);
+            return redirect()->back();
+            
         } catch(Exception $e){
             
             return response([

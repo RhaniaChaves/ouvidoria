@@ -10,6 +10,9 @@ Route::get('/', function () {
 
 Route::controller(ManifestacoesController::class)->prefix("manifestacoes")->group(function(){
     Route::get('/form',"create")->name('manifestacao.form');
+    Route::get('/buscar', function(){
+        return view('show');
+    })->name('manifestacao.buscar');
     Route::get('/{codigo_rastreio}', "show" )->name("manifestacoes.listar-por-codigo");
     Route::post('/','store')->name('manifestacao.criar');
 });
